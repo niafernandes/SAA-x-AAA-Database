@@ -22,7 +22,6 @@ def after_request(response):
     return response
 
 # Custom filter
-# hello
 app.jinja_env.filters["usd"] = usd
 
 # Configure session to use filesystem (instead of signed cookies)
@@ -34,7 +33,81 @@ Session(app)
 # Configure CS50 Library to use SQLite database
 db = SQL("sqlite:///asians.db")
 
-
 @app.route("/")
 @login_required
 def index():
+
+
+#Create users
+CREATE TABLE users (
+    email char,
+    password hash,
+    user_id int,
+);
+
+#
+
+# Insert values into the users table of asians.db
+    db.execute("INSERT INTO users(email, password, user_id)) VALUES(?, ?, ?, ?)",
+        first_name, middle_name, last_name, row
+
+#Create directory
+CREATE TABLE directory (
+    user_id int,
+    first_name char,
+    last_name char,
+    graduation_year int,
+    house char,
+    concentration char,
+    current_city char,
+    email char,
+);
+
+#
+
+# Insert values into the directory table of asians.db
+    db.execute("INSERT INTO directory(user_id, first_name, last_name, graduation_year, house, concentration, current_city, email)) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)",
+        first_name, middle_name, last_name, row
+
+# Directory should be sorted alphabetically by last name, then first name
+for last_name, first_name in sorted(counts.items()):
+
+#Create job_history
+CREATE TABLE job_history (
+    user_id int,
+    company char,
+    position char,
+    description char,
+    start_year int,
+    end_year int,
+);
+
+#
+
+# Insert values into the job_history table of asians.db
+    db.execute("INSERT INTO job_history(user_id, company, position, description, start_year, end_year)) VALUES(?, ?, ?, ?, ?, ?)",
+        first_name, middle_name, last_name, row
+
+#Create clubs
+CREATE TABLE clubs (
+    club_id int,
+    club_name char,
+);
+
+#
+
+# Insert values into the club table of asians.db
+    db.execute("INSERT INTO clubs(club_id, club_name)) VALUES(?, ?)",
+        first_name, middle_name, last_name, row
+
+#Create club_user
+CREATE TABLE club-user(
+    club_id int,
+    user_id int,
+);
+
+#
+
+# Insert values into the club table of asians.db
+    db.execute("INSERT INTO club_user(club_id, user_id)) VALUES(?, ?)",
+        first_name, middle_name, last_name, row
