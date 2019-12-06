@@ -150,6 +150,20 @@ def form():
                         email=request.form.get("email"))
         return redirect("/")
 
+@app.route("/directory", methods=["GET"])
+@login_required
+def directory():
+    """Display user's directory."""
+    directory = db.execute("SELECT * FROM directory ORDER BY last_name ASC")
+    return render_template("directory.html", directory=directory)
+
+@app.route("/profile", methods=["GET"])
+@login_required
+def profile():
+    """Display user's profile."""
+    directory = db.execute("SELECT * FROM directory ORDER BY last_name ASC")
+    return render_template("directory.html", directory=directory)
+
 # #Add generate_password_hash ("password")
 
 

@@ -1,0 +1,38 @@
+
+{% extends "layout.html" %}
+
+{% block title %}
+    Directory
+{% endblock %}
+
+{% block main %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Graduation Year</th>
+                <th>House</th>
+                <th>Concentration</th>
+                <th>Current City</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in directory %}
+                <tr>
+                    <td>{{ user.first_name }}</td>
+                    <td>{{ user.last_name }}</td>
+                    <td>{{ user.graduation_year }}</td>
+                    <td>{{ user.house }}</td>
+                    <td>{{ user.concentration }}</td>
+                    <td>{{ user.current_city }}</td>
+                    <td>{{ user.email }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
+
+
