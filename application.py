@@ -156,6 +156,7 @@ def directory():
     """Display user's directory."""
     directory = db.execute("SELECT * FROM directory ORDER BY last_name ASC")
     return render_template("directory.html", directory=directory)
+<<<<<<< HEAD
 
 @app.route("/profile", methods=["GET"])
 @login_required
@@ -251,6 +252,97 @@ app.config['UPLOAD_FOLDER'] = PEOPLE_FOLDER
 #     user_id int,
 # );
 
+=======
+
+@app.route("/profile", methods=["GET"])
+@login_required
+def profile():
+    """Display user's profile."""
+    directory = db.execute("SELECT * FROM directory ORDER BY last_name ASC")
+    return render_template("directory.html", directory=directory)
+
+# #Add generate_password_hash ("password")
+
+
+# # Insert values into the users table of asians.db
+#     db.execute("INSERT INTO users(email, password)) VALUES(:email, :password)",
+#         email = request.form.get("email")
+#         password = generate_password_hash(request.form.get("password"))
+
+# #Create directory
+# CREATE TABLE directory (
+#     user_id int,
+#     first_name char,
+#     last_name char,
+#     graduation_year int,
+#     house char,
+#     concentration char,
+#     current_city char,
+#     email char,
+# );
+
+# #
+
+# # Insert values into the directory table of asians.db
+#     db.execute("INSERT INTO directory(user_id, first_name, last_name, graduation_year, house, concentration, current_city, email)) VALUES(:user_id, :first_name, :last_name, :graduation_year, :house, :concentration, :current_city, :email)",
+#         user_id = request.form.get("user_id")
+#         first_name = request.form.get("first_name")
+#         last_name = request.form.get("last_name")
+#         graduation_year = request.form.get("graduation_year")
+#         house = request.form.get("houes")
+#         concentration = request.form.get("concentration")
+#         current_city = request.form.get("current_city)
+#         email = request.form.get("email")
+  # Forget any user_id
+
+
+
+
+# # Directory should be sorted alphabetically by last name, then first name
+# for last_name, first_name in sorted(counts.items()):
+
+# #Create job_history
+# CREATE TABLE job_history (
+#     user_id int,
+#     company char,
+#     position char,
+#     description char,
+#     start_year int,
+#     end_year int,
+# );
+
+# #
+
+# # Insert values into the job_history table of asians.db
+#     db.execute("INSERT INTO job_history(user_id, company, position, description, start_year, end_year)) VALUES(:user_id, :company, :position, :description, :start_year, :end_year)",
+#         user_id = request.form.get("user_id")
+#         company = request.form.get("first_name")
+#         position = request.form.get("last_name")
+#         description = request.form.get("graduation_year")
+#         house = request.form.get("houes")
+#         concentration = request.form.get("concentration")
+#         current_city = request.form.get("current_city)
+#         email = request.form.get("email")
+
+# #Create clubs
+# CREATE TABLE clubs (
+#     club_id int,
+#     club_name char,
+# );
+
+# #
+
+# # Insert values into the club table of asians.db
+#     db.execute("INSERT INTO clubs(club_name)) VALUES(:club_name)",
+#         club_name = request.form.get("club_name")
+
+# #Create club_user
+# CREATE TABLE club-user(
+#     club_id int,
+#     user_id int,
+# );
+
+>>>>>>> 305d74b723acbaab0f53763f3d050c0e739f2af5
 # #
 
 # # Insert values into the club table of asians.db
