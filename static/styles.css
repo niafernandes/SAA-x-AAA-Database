@@ -45,3 +45,14 @@ main img
     /* constrain images on small screens */
     max-width: 100%;
 }
+
+.opening_statement
+{
+    font-size: 20px;
+    text-align: center;
+}
+
+.logo_text
+{
+    font-size: 15px;
+}

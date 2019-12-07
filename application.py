@@ -155,6 +155,7 @@ def form():
 def directory():
     """Display user's directory."""
     directory = db.execute("SELECT * FROM directory ORDER BY last_name ASC")
+    print("got here!")
     return render_template("directory.html", directory=directory)
 
 @app.route("/profile", methods=["GET"])
