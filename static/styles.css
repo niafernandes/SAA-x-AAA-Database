@@ -88,6 +88,9 @@ main img
     #b6701e 100%
 }
 
+.search
+{
+    font-size: 50px;
 }
 
 .row {
@@ -105,3 +108,4 @@ main img
   margin-top: 8px;
   vertical-align: right;
 }
+
