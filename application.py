@@ -124,10 +124,8 @@ def form():
         return render_template("form.html")
     if request.method == "POST":
         # Validate form submission
-        if not request.form.get("first_name"):
-            return apology("missing First Name")
-        if not request.form.get("last_name"):
-            return apology("missing Last Name")
+        if not request.form.get("name"):
+            return apology("missing Name")
         if not request.form.get("graduation_year"):
             return apology("missing Graduation Year")
         if not request.form.get("house"):
@@ -142,9 +140,8 @@ def form():
             return apology("missing Organization")
 
         # insert into SQL database
-        db.execute("INSERT INTO directory (first_name, last_name, graduation_year, house, concentration, current_city, email, organization) VALUES(:first_name, :last_name, :graduation_year, :house, :concentration, :current_city, :email, :organization)",
-                        first_name=request.form.get("first_name"),
-                        last_name=request.form.get("last_name"),
+        db.execute("INSERT INTO directory (name, graduation_year, house, concentration, current_city, email, organization) VALUES(:name, :graduation_year, :house, :concentration, :current_city, :email, :organization)",
+                        name=request.form.get("name"),
                         graduation_year=request.form.get("graduation_year"),
                         house=request.form.get("house"),
                         concentration=request.form.get("concentration"),
@@ -153,26 +150,67 @@ def form():
                         organization=request.form.get("organization"))
         return redirect("/")
 
+@app.route("/profile", methods=["GET", "POST"])
+def profile():
+    if request.method == "GET":
+        return render_template("profile.html")
+    if request.method == "POST":
+        # Validate form submission
+        if not request.form.get("name"):
+            return apology("missing Name")
+        if not request.form.get("company"):
+            return apology("missing Company")
+        if not request.form.get("position"):
+            return apology("missing Position")
+        if not request.form.get("description"):
+            return apology("missing description")
+        if not request.form.get("start_year"):
+            return apology("missing Start Year")
+        if not request.form.get("end_year"):
+            return apology("missing End Year")
+
+        # insert into SQL database
+        db.execute("INSERT INTO job_history (name, company, position, description, start_year, end_year) VALUES(:name, :company, :position, :description, :start_year, :end_year)",
+                        name=request.form.get("name"),
+                        company=request.form.get("company"),
+                        position=request.form.get("position"),
+                        description=request.form.get("description"),
+                        start_year=request.form.get("start_year"),
+                        end_year=request.form.get("end_year"))
+        return redirect("/")
+
+
 @app.route("/directory", methods=["GET", "POST"])
 @login_required
 def directory():
     """Display user's directory."""
     print("HERE!")
     if request.method == "GET":
-        directory = db.execute("SELECT * FROM directory ORDER BY last_name ASC")
+        directory = db.execute("SELECT * FROM directory ORDER BY name ASC")
         print("got here!")
         return render_template("directory.html", directory=directory)
-    #elif request.method == "POST":
-        #print("Post request recieved!")
-        #db.execute(SELECT * from directory WHERE first_name=first_name)
-        #return render_templact("search.html", search=search)
 
-@app.route("/profile/<id>", methods=["GET"])
+
+@app.route("/jobhistory", methods=["GET", "POST"])
 @login_required
-def profile(id):
+def jobhistory():
+    """Display user's directory."""
+    print("HERE!")
+# user.id being passed
+    if request.method == "GET":
+        jobhistory = db.execute("SELECT * FROM job_history ORDER BY name ASC")
+        print(jobhistory)
+        print("got here!")
+        return render_template("jobhistory.html", jobhistory=jobhistory)
+
+@app.route("/self/<name>", methods=["GET"])
+@login_required
+def self(name):
     """Display user's profile."""
-    directory = db.execute("SELECT * FROM directory ORDER BY last_name ASC")
-    return render_template("directory.html", directory=directory)
+    self = db.execute("SELECT * FROM job_history WHERE name like '%"+name+"%'")
+    return render_template("self.html", directory=self)
+
+
 
 # #Add generate_password_hash ("password")
 

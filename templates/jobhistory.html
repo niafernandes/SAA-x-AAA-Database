@@ -1,0 +1,43 @@
+
+{% extends "layout.html" %}
+
+{% block title %}
+    Job History
+{% endblock %}
+
+{% block main %}
+    <head>
+        <title>Search Form</title>
+        <link href="styles.css" rel="stylesheet">
+    </head>
+    <body>
+        Happy Searching!
+    </body>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Company</th>
+                <th>Position</th>
+                <th>Description</th>
+                <th>Start Year</th>
+                <th>End Year</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in jobhistory %}
+                <tr>
+                    <td> <a href = "/self/{{user.name}}">{{ user.name }}</a></td>>
+                    <td> {{ user.company }}</td>
+                    <td> {{ user.position }}</td>
+                    <td> {{ user.description }}</td>
+                    <td> {{ user.start_year }}</td>
+                    <td> {{ user.end_year }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
+
