@@ -210,6 +210,13 @@ def self(name):
     self = db.execute("SELECT * FROM job_history WHERE name like '%"+name+"%'")
     return render_template("self.html", directory=self)
 
+@app.route("/selfjob/<name>", methods=["GET"])
+@login_required
+def selfjob(name):
+    """Display user's profile."""
+    selfjob = db.execute("SELECT * FROM directory WHERE name like '%"+name+"%'")
+    return render_template("selfjob.html", directory=selfjob)
+
 
 
 # #Add generate_password_hash ("password")

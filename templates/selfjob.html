@@ -1,0 +1,52 @@
+
+{% extends "layout.html" %}
+
+{% block title %}
+    Job History
+{% endblock %}
+
+{% block main %}
+    <head>
+        <title>Search Form</title>
+        <link href="styles.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="header">
+            <form action="/self" method="post">
+                <div class="form-box">
+                <input type="text" class="search-field location"
+                placeholder="Who you looking for.." name="search_field">
+                <button class="search-btn" type="submit">search</button>
+                </div>
+        </form>
+        </div>
+    </body>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Graduation Year</th>
+                <th>House</th>
+                <th>Concentration</th>
+                <th>Current City</th>
+                <th>Email</th>
+                <th>Organization</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in directory %}
+                <tr>
+                    <td> <a href = "/selfjob/{{user.user_id}}">{{ user.name }}</a></td>
+                    <td> {{ user.graduation_year }}</td>
+                    <td> {{ user.house }}</td>
+                    <td> {{ user.concentration }}</td>
+                    <td> {{ user.current_city }}</td>
+                    <td> {{ user.email }}</td>
+                    <td> {{ user.organization }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
