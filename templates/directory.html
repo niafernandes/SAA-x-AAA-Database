@@ -12,11 +12,11 @@
     </head>
     <body>
         <div class="header">
-            <form>
+            <form action="/directory" method="post">
                 <div class="form-box">
                 <input type="text" class="search-field location"
-                placeholder="Who you looking for..">
-                <button class="search-btn" type="button">search</button>
+                placeholder="Who you looking for.." name="search_field">
+                <button class="search-btn" type="submit">search</button>
                 </div>
         </form>
         </div>
@@ -32,18 +32,20 @@
                 <th>Concentration</th>
                 <th>Current City</th>
                 <th>Email</th>
+                <th>Organization</th>
             </tr>
         </thead>
         <tbody>
             {% for user in directory %}
                 <tr>
-                    <td>{{ user.first_name }}</td>
+                    <td> <a href = "/profile/{{user.user_id}}">{{ user.first_name }}</a></td>
                     <td>{{ user.last_name }}</td>
                     <td>{{ user.graduation_year }}</td>
                     <td>{{ user.house }}</td>
                     <td>{{ user.concentration }}</td>
                     <td>{{ user.current_city }}</td>
                     <td>{{ user.email }}</td>
+                    <td>{{ user.organization }}</td>
                 </tr>
             {% endfor %}
         </tbody>

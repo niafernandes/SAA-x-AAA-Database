@@ -138,34 +138,41 @@ def form():
             return apology("missing Current City")
         if not request.form.get("email"):
             return apology("missing Email")
+        if not request.form.get("organization"):
+            return apology("missing Organization")
 
         # insert into SQL database
-        db.execute("INSERT INTO directory (first_name, last_name, graduation_year, house, concentration, current_city, email) VALUES(:first_name, :last_name, :graduation_year, :house, :concentration, :current_city, :email)",
+        db.execute("INSERT INTO directory (first_name, last_name, graduation_year, house, concentration, current_city, email, organization) VALUES(:first_name, :last_name, :graduation_year, :house, :concentration, :current_city, :email, :organization)",
                         first_name=request.form.get("first_name"),
                         last_name=request.form.get("last_name"),
                         graduation_year=request.form.get("graduation_year"),
                         house=request.form.get("house"),
                         concentration=request.form.get("concentration"),
                         current_city=request.form.get("current_city"),
-                        email=request.form.get("email"))
+                        email=request.form.get("email"),
+                        organization=request.form.get("organization"))
         return redirect("/")
 
-@app.route("/directory", methods=["GET"])
+@app.route("/directory", methods=["GET", "POST"])
 @login_required
 def directory():
     """Display user's directory."""
-    directory = db.execute("SELECT * FROM directory ORDER BY last_name ASC")
-    print("got here!")
-    return render_template("directory.html", directory=directory)
+    print("HERE!")
+    if request.method == "GET":
+        directory = db.execute("SELECT * FROM directory ORDER BY last_name ASC")
+        print("got here!")
+        return render_template("directory.html", directory=directory)
+    elif request.method == "POST":
+        print("Post request recieved!")
+        db.execute(SELECT * from directory WHERE re )
+        return render_templact("search.html", search=search)
 
-@app.route("/profile", methods=["GET"])
+@app.route("/profile/<id>", methods=["GET"])
 @login_required
-def profile():
+def profile(id):
     """Display user's profile."""
     directory = db.execute("SELECT * FROM directory ORDER BY last_name ASC")
     return render_template("directory.html", directory=directory)
-
-
 
 # #Add generate_password_hash ("password")
 
@@ -188,6 +195,9 @@ def profile():
 # );
 
 # #
+
+
+# create a route that takes a profile
 
 # # Insert values into the directory table of asians.db
 #     db.execute("INSERT INTO directory(user_id, first_name, last_name, graduation_year, house, concentration, current_city, email)) VALUES(:user_id, :first_name, :last_name, :graduation_year, :house, :concentration, :current_city, :email)",
