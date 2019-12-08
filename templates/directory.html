@@ -6,7 +6,10 @@
 {% endblock %}
 
 {% block main %}
+   <html lang="en">
     <head>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
         <title>Search Form</title>
         <link href="styles.css" rel="stylesheet">
     </head>
@@ -16,10 +19,11 @@
                 <div class="form-box">
                 <input type="text" class="search-field location"
                 placeholder="Who you looking for.." name="search_field">
-                <button class="search-btn" type="submit">search</button>
+                <input class="btn btn-primary" type="submit" value="Submit">
                 </div>
         </form>
         </div>
+        &nbsp;
     </body>
 
     <table class="table table-striped">

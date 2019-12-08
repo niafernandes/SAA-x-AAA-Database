@@ -46,13 +46,62 @@ main img
     max-width: 100%;
 }
 
-.opening_statement
+.homepage
 {
-    font-size: 20px;
-    text-align: center;
+  background-image: linear-gradient(to bottom, maroon, maroon 50%, white 50%);
+  background-attachment:fixed;
+  background-repeat: no-repeat;
 }
 
 .logo_text
 {
     font-size: 15px;
+}
+
+.title
+{
+    color: #FFFFFF;
+    font-size: 55px;
+    font-weight: lighter;
+    text-align: center;
+}
+
+
+.heading
+{
+    font-size: 15px;
+}
+
+.opening_statement
+{
+    font-size: 18px;
+    color: #FFFFFF;
+    text-align: center;
+    font-style: oblique;
+}
+
+.container {
+  background: linear-gradient(,
+    #ff9e2c 0%,
+    #ff9e2c 50%,
+    #b6701e 50%,
+    #b6701e 100%
+}
+
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 4px;
+}
+
+.column {
+  flex: 50%;
+  padding: 0 4px;
+}
+
+.column2 {
+  margin-top: 8px;
+  vertical-align: right;
 }
