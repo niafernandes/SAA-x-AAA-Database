@@ -11,15 +11,7 @@
         <link href="styles.css" rel="stylesheet">
     </head>
     <body>
-        <div class="header">
-            <form action="/directory" method="post">
-                <div class="form-box">
-                <input type="text" class="search-field location"
-                placeholder="Who you looking for.." name="search_field">
-                <button class="search-btn" type="submit">search</button>
-                </div>
-        </form>
-        </div>
+        Happy Searching!
     </body>
 
     <table class="table table-striped">
@@ -37,7 +29,7 @@
         <tbody>
             {% for user in directory %}
                 <tr>
-                    <td> <a href = "/profile/{{user.user_id}}">{{ user.name }}</a></td>
+                    <td> <a href = "/self/{{user.name}}">{{ user.name }}</a></td>
                     <td> {{ user.graduation_year }}</td>
                     <td> {{ user.house }}</td>
                     <td> {{ user.concentration }}</td>

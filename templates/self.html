@@ -1,0 +1,50 @@
+
+{% extends "layout.html" %}
+
+{% block title %}
+    Directory
+{% endblock %}
+
+{% block main %}
+    <head>
+        <title>Search Form</title>
+        <link href="styles.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="header">
+            <form action="/self" method="post">
+                <div class="form-box">
+                <input type="text" class="search-field location"
+                placeholder="Who you looking for.." name="search_field">
+                <button class="search-btn" type="submit">search</button>
+                </div>
+        </form>
+        </div>
+    </body>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Company</th>
+                <th>Position</th>
+                <th>Description</th>
+                <th>Start Year</th>
+                <th>End Year</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in directory %}
+                <tr>
+                    <td> <a href = "/self/{{user.user_id}}">{{ user.name }}</a></td>
+                    <td> {{ user.company }}</td>
+                    <td> {{ user.position }}</td>
+                    <td> {{ user.description }}</td>
+                    <td> {{ user.start_year }}</td>
+                    <td> {{ user.end_year }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
