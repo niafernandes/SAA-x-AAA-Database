@@ -124,10 +124,8 @@ def form():
         return render_template("form.html")
     if request.method == "POST":
         # Validate form submission
-        if not request.form.get("first_name"):
-            return apology("missing First Name")
-        if not request.form.get("last_name"):
-            return apology("missing Last Name")
+        if not request.form.get("name"):
+            return apology("missing Name")
         if not request.form.get("graduation_year"):
             return apology("missing Graduation Year")
         if not request.form.get("house"):
@@ -142,9 +140,8 @@ def form():
             return apology("missing Organization")
 
         # insert into SQL database
-        db.execute("INSERT INTO directory (first_name, last_name, graduation_year, house, concentration, current_city, email, organization) VALUES(:first_name, :last_name, :graduation_year, :house, :concentration, :current_city, :email, :organization)",
-                        first_name=request.form.get("first_name"),
-                        last_name=request.form.get("last_name"),
+        db.execute("INSERT INTO directory (name, graduation_year, house, concentration, current_city, email, organization) VALUES(:name, :graduation_year, :house, :concentration, :current_city, :email, :organization)",
+                        name=request.form.get("name"),
                         graduation_year=request.form.get("graduation_year"),
                         house=request.form.get("house"),
                         concentration=request.form.get("concentration"),
@@ -159,13 +156,12 @@ def directory():
     """Display user's directory."""
     print("HERE!")
     if request.method == "GET":
-        directory = db.execute("SELECT * FROM directory ORDER BY last_name ASC")
+        directory = db.execute("SELECT * FROM directory ORDER BY name ASC")
         print("got here!")
         return render_template("directory.html", directory=directory)
-    elif request.method == "POST":
-        print("Post request recieved!")
-        db.execute(SELECT * from directory WHERE re )
-        return render_templact("search.html", search=search)
+ #   elif request.method == "POST":
+ #       db.execute(SELECT * from directory WHERE first_name=first_name)
+#        return render_templact("search.html", search=search)
 
 @app.route("/profile/<id>", methods=["GET"])
 @login_required
